@@ -1,4 +1,4 @@
-namespace KarlaHi.Core.Entities
+namespace KarlaHi.Infrastructure.Entities
 {
     public class Product
     {

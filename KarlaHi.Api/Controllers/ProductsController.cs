@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using KarlaHi.Core.Entities;
-using KarlaHi.Infrastructure.Data;
+using KarlaHi.Core.Services;
+using KarlaHi.Infrastructure.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace KarlaHi.Api.Controllers
 {
@@ -12,24 +14,22 @@ namespace KarlaHi.Api.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly StoreContext _context;
-        public ProductsController(StoreContext context)
-        {
-            _context = context;
+        private readonly IProductsService _pService;
+        public ProductsController(IProductsService pService) {
+            _pService = pService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        //[Authorize]
+        public async Task<List<Product>> GetProducts()
         {
-            var products = await _context.Products.ToListAsync();
-            return  Ok(products);
+            return  await _pService.GetProductsList();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<Product> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            return product;
+            return await _pService.GetProduct(id);
         }
     }
 }

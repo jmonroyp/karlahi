@@ -1,4 +1,4 @@
-using KarlaHi.Core.Entities;
+using KarlaHi.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace KarlaHi.Infrastructure.Data
