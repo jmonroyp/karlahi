@@ -17,5 +17,4 @@
     <ProjectReference Include="..\KarlaHi.Infrastructure\KarlaHi.Infrastructure.csproj" />
     <ProjectReference Include="..\KarlaHi.Core\KarlaHi.Core.csproj" />
   </ItemGroup>
-
 </Project>

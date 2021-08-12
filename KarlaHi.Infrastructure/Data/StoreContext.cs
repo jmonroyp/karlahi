@@ -1,3 +1,4 @@
+using System.Reflection;
 using KarlaHi.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,5 +11,12 @@ namespace KarlaHi.Infrastructure.Data
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);          
+        }
     }
 }

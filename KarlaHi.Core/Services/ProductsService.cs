@@ -14,14 +14,30 @@ namespace KarlaHi.Core.Services
             _context = context;
         }
 
-        public async Task<Product> GetProduct(int id)
+        public async Task<Product> GetProductAsync(int id)
         {
-           return await _context.Products.FindAsync(id);
+            return await _context.Products
+            .Include(p => p.ProductType)
+             .Include(p => p.ProductBrand)
+            .FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<List<Product>> GetProductsList()
+        public async Task<List<ProductBrand>> GetProductBrandsAsync()
         {
-            return  await _context.Products.ToListAsync();
+            return await _context.ProductBrands.ToListAsync();
+        }
+
+        public async Task<List<Product>> GetProductsAsync()
+        {
+            return await _context.Products
+            .Include(p => p.ProductType)
+            .Include(p => p.ProductBrand)
+            .ToListAsync();
+        }
+
+        public async Task<List<ProductType>> GetProductTypesAsync()
+        {
+            return await _context.ProductTypes.ToListAsync();
         }
     }
 }

@@ -6,7 +6,9 @@ namespace KarlaHi.Core.Services
 {
     public interface IProductsService
     {
-        Task<List<Product>> GetProductsList();
-        Task<Product> GetProduct(int id);
+        Task<List<Product>> GetProductsAsync();
+        Task<Product> GetProductAsync(int id);
+        Task<List<ProductType>> GetProductTypesAsync();
+        Task<List<ProductBrand>> GetProductBrandsAsync();
     }
 }

@@ -23,13 +23,25 @@ namespace KarlaHi.Api.Controllers
         //[Authorize]
         public async Task<List<Product>> GetProducts()
         {
-            return  await _pService.GetProductsList();
+            return  await _pService.GetProductsAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<Product> GetProduct(int id)
         {
-            return await _pService.GetProduct(id);
+            return await _pService.GetProductAsync(id);
+        }
+
+        [HttpGet("brands")]
+        public async Task<List<ProductBrand>> GetBrands()
+        {
+            return await _pService.GetProductBrandsAsync();
+        }
+
+        [HttpGet("types")]
+        public async Task<List<ProductType>> GetTypes()
+        {
+            return await _pService.GetProductTypesAsync();
         }
     }
 }

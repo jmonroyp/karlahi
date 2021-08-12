@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KarlaHi.Api.Filters;
-using KarlaHi.Core.Interfaces;
 using KarlaHi.Core.Services;
 using KarlaHi.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -56,7 +55,6 @@ namespace KarlaHi.Api
             });
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IProductsService, ProductsService>();
-            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
