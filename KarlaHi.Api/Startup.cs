@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using KarlaHi.Api.Filters;
-using KarlaHi.Core.Services;
+using KarlaHi.Core.Repositories;
 using KarlaHi.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
+using KarlaHi.Api.Helpers;
 
 namespace KarlaHi.Api
 {
@@ -32,6 +27,7 @@ namespace KarlaHi.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers(options =>
             options.Filters.Add(new HttpResponseExceptionFilter()));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -53,8 +49,8 @@ namespace KarlaHi.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KarlaHi.Api", Version = "v1" });
             });
-            services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IProductsService, ProductsService>();
+            services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));            
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +71,8 @@ namespace KarlaHi.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
