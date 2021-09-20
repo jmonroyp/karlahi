@@ -1,4 +1,5 @@
 using KarlaHi.Api.Models;
+using KarlaHi.Api.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 

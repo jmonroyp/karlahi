@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using KarlaHi.Api.Dtos;
+using KarlaHi.Api.Responses;
 using KarlaHi.Core.Repositories;
 using KarlaHi.Core.Specifications;
 using KarlaHi.Infrastructure.Entities;
@@ -10,9 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KarlaHi.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseApiController
     {
         private readonly IGenericRepository<Product> _productRepo;
         private readonly IGenericRepository<ProductType> _productTypeRepo;

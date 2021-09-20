@@ -13,6 +13,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using AutoMapper;
 using KarlaHi.Api.Helpers;
+using System.Net;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Diagnostics;
+using System.IO;
 
 namespace KarlaHi.Api
 {
@@ -49,7 +53,7 @@ namespace KarlaHi.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KarlaHi.Api", Version = "v1" });
             });
-            services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));            
+            services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
@@ -59,13 +63,12 @@ namespace KarlaHi.Api
             app.UseAuthentication();
             if (env.IsDevelopment())
             {
-                app.UseExceptionHandler("/errordev");
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "KarlaHi.Api v1"));
             }
             else
             {
-                app.UseExceptionHandler("/error");
+
             }
 
             app.UseHttpsRedirection();
