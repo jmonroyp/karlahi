@@ -1,29 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Test.Api.BuilderExtensions;
 using Test.Api.Tracing;
-using Test.Core.Dtos;
 using Test.Core.Services;
 using Test.Core.Utils;
 using Test.Infraestructure.Database;
-using Test.Infraestructure.Entities;
 using Test.Infraestructure.Repositories;
 
 namespace Test.Api
@@ -65,8 +53,10 @@ namespace Test.Api
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                               builder =>
                               {
-                                  builder.WithOrigins("http://localhost:3000",
-                                                      "https://localhost:3000");
+                                  builder.AllowAnyOrigin()
+                                         .AllowAnyHeader()
+                                         .AllowAnyMethod();
+
                               });
             });
             services.AddAutoMapper(typeof(MappingProfiles));
@@ -91,11 +81,20 @@ namespace Test.Api
                 app.UseDefaultUsers(usersService);
             }
 
-            app.UseHttpsRedirection();
+             app.Use((context, next) =>
+            {
+                context.Response.Headers["Access-Control-Allow-Origin"] = "*";
+                context.Response.Headers["Access-Control-Allow-Methods"] = "DELETE, POST, GET, OPTIONS, PUT";
+                context.Response.Headers["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With";
+                return next.Invoke();
+            });
+
+            // app.UseCors(options => options.WithOrigins("*"));
+            app.UseCors(MyAllowSpecificOrigins);
+
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseResponseCaching();
 

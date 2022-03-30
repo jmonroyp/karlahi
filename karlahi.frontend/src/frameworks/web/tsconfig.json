@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "strict": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "paths": {
+      "@adapters/*": ["../../adapters/*"],
+      "@domains/*": ["../../domains/*"],
+      "@frameworks/*": ["../../frameworks/*"],
+      "@hooks/*": ["../../frameworks/web/hooks/*"],
+      "@di": ["./di/index.ts"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
