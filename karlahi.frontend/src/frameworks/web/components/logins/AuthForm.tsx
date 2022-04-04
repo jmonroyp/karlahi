@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
 interface IProps {
   accredit(id: string, pw: string): void;
@@ -29,38 +30,34 @@ const AuthForm: React.FC<IProps> = (props) => {
   };
 
   return (
-    <div className="ui form">
-      <div className="ui segment">
-        <div className="field">
-          <label htmlFor="id">Username</label>
-          <input
-            type="text"
-            name="id"
-            placeholder="Username"
-            onChange={handleChangeClientInfo}
-            value={id}
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="pw">Password</label>
-          <input
-            type="password"
-            name="pw"
-            placeholder="Password"
-            onChange={handleChangeClientInfo}
-            onKeyDown={handleKeyDownAccredit}
-            value={pw}
-          />
-        </div>
-        <button
-          className="ui button"
-          type="button"
-          onClick={handleClickAccredit}
-        >
-          Login
-        </button>
-      </div>
-    </div>
+    <Form className="form-group">
+      <Form.Group className="mb-3">
+        <Form.Label>Usuario</Form.Label>
+        <Form.Control
+          name="id"
+          type="text"
+          placeholder="Ingresar usuario"
+          onChange={handleChangeClientInfo}
+          value={id}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Contraseña</Form.Label>
+        <Form.Control
+          type="password"
+          name="pw"
+          placeholder="Ingresar password"
+          onChange={handleChangeClientInfo}
+          onKeyDown={handleKeyDownAccredit}
+          value={pw}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Button variant="primary" type="button" onClick={handleClickAccredit}>
+          Entrar
+        </Button>
+      </Form.Group>
+    </Form>
   );
 };
 
