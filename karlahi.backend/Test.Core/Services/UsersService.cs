@@ -21,7 +21,7 @@ namespace Test.Core.Services
         public async Task<AuthToken> AuthenticateAsync(UserDto user, string jwtKey)
         {
             var usr = await GetBySpecAsync(new AuthSpecification(user.Username, user.Password));
-            if (user == null)
+            if (usr == null)
                 return null;
 
             // Else we generate JSON Web Token
@@ -31,13 +31,13 @@ namespace Test.Core.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
               {
-             new Claim(ClaimTypes.Name, user.Username)
+             new Claim(ClaimTypes.Name, usr.Username)
               }),
                 Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return new AuthToken { Token = tokenHandler.WriteToken(token) };
+            return new AuthToken { Token = tokenHandler.WriteToken(token), Username = usr.Username };
         }
     }
 }

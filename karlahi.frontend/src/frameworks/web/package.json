@@ -22,7 +22,8 @@
   },
   "scripts": {
     "start": "webpack serve --port 3000",
-    "build": "NODE_ENV=development webpack"
+    "build": "NODE_ENV=development webpack",
+    "push": "git push https://github.com/jmonroyp/karlahi.git"
   },
   "eslintConfig": {
     "extends": [
