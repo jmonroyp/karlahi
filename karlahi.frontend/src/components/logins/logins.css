@@ -1,0 +1,34 @@
+h3 {
+  text-align: center;
+  color: white;
+}
+
+@media screen and (min-width: 600px) {
+  .auth-form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    min-width: 500px;
+    margin: 0 10px;
+  }
+}
+
+.auth-form {
+  padding: 30px;
+  background-color: #2b2b2b;
+  border: none;
+  border-radius: 6px;
+  margin: 0;
+}
+
+.auth-form label {
+  color: white;
+}
+
+.auth-form p {
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+}

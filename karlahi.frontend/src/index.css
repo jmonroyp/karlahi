@@ -1,0 +1,52 @@
+body > .grid {
+  height: 100%;
+}
+
+html,
+body,
+.app {
+  height: 100%;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.btn.btn-primary {
+  width: 100%;
+  background-color: #0e0e0e;
+  border-color: black;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+
+
+body {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.menu-kart {
+  padding: 20px;
+}
+
+.menu-kart .bg-light {
+  background-color: #2b2b2b!important;
+}
+
+.menu-kart .bg-light .nav-link {
+  color: #fff!important;
+}
+
+
+.menu-kart .navbar-brand {
+  color: gray;
+}
+
+.app {
+  background-color: #0e0e0e;
+}
+
+
+.app-body {
+  color: #fff;
+  padding: 20px;;
+}
