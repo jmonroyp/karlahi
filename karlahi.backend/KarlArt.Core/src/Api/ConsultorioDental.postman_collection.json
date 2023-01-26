@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "301a7617-4a4d-4da0-8239-18918b7888f6",
+		"name": "ConsultorioDental",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "544056"
+	},
+	"item": [
+		{
+			"name": "Patients",
+			"item": [
+				{
+					"name": "Add Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Shari\",\r\n  \"lastName\": \"Denesik\",\r\n  \"birthDate\": \"2022-07-04T23:45:44.6635775-05:00\",\r\n  \"birthPlace\": \"Hodkiewiczchester\",\r\n  \"phoneNumber\": \"1-471-358-4600 x18655\",\r\n  \"cellNumber\": \"698-658-6051\",\r\n  \"occupation\": \"Et ipsa autem dolor aut ut qui.\",\r\n  \"sentBy\": \"Eveniet iusto aliquid corrupti autem iste aut soluta unde error.\",\r\n  \"reason\": \"Temporibus ipsa autem.\",\r\n  \"sickness\": \"Assumenda consectetur libero dolorum iusto ex maxime praesentium exercitationem est.\",\r\n  \"sicknessNotes\": \"Corporis harum non eos possimus ducimus tenetur libero magnam sit.\",\r\n  \"paymentMethod\": 1,\r\n  \"medicine\": \"Sint repudiandae consequuntur at odit qui consectetur iure.\",\r\n  \"medicineNotes\": \"Cumque est veniam.\",\r\n  \"allergies\": \"Consequatur sequi sint perspiciatis adipisci.\",\r\n  \"allergiesNotes\": \"Et corporis repudiandae quia rerum sed eum officia optio dolorem.\",\r\n  \"doctor\": \"Dra. Paty\",\r\n  \"profilePic\": \"https://picsum.photos/640/480/?image=527\",\r\n  \"institution\": \"Non repudiandae velit eius deleniti laborum sunt sed cumque.\",\r\n  \"odontogramDraw\": \"https://socialdentalstudio.com/wp-content/uploads/2017/03/Diapositiva1-960x640.jpg\",\r\n  \"odontogramDescription\": \"Facilis non qui sapiente rerum deleniti nostrum.\",\r\n  \"exploration\": \"Est tempore molestias inventore consectetur.\",\r\n  \"diagnostic\": \"Facere id rem incidunt laudantium rerum eos rerum possimus quasi.\",\r\n  \"treatment\": \"Culpa minus voluptates.\",\r\n  \"observations\": \"Quo vitae temporibus quia quia eum.\",\r\n  \"firstVisit\": true,\r\n  \"age\": \"46\",\r\n  \"isQueued\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5215/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5215",
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Patients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5215/patient?q=name:\"Jon\" OR name:\"Shari\"&page=5&pageSize=256",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5215",
+							"path": [
+								"patient"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "name:\"Jon\" OR name:\"Shari\""
+								},
+								{
+									"key": "page",
+									"value": "5"
+								},
+								{
+									"key": "pageSize",
+									"value": "256"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

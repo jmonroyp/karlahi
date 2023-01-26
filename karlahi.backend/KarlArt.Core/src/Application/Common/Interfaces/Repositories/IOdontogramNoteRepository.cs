@@ -1,0 +1,7 @@
+using KarlArt.Core.Domain.Entities;
+
+namespace KarlArt.Core.Application.Common.Interfaces.Repositories;
+public interface IOdontogramNoteRepository : INestedMongoRepository<Patient, OdontogramNote>
+{
+
+}

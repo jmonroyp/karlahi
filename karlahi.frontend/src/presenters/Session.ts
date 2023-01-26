@@ -10,10 +10,6 @@ export default class SessionPresenter implements ISessionPresenter {
     return await this.repository.authenticate(new Login(username, password));
   }
 
-  getToken(): Promise<string> {
-    return this.repository.getToken();
-  }
-
   getSession(): Promise<ISession> {
     return this.repository.getSession();
   }

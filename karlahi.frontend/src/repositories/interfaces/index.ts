@@ -6,5 +6,4 @@ export interface ISessionRepository {
   setToken(token: string): void;
   logout(): Promise<void>;
   getSession(): Promise<ISession>;
-
 }

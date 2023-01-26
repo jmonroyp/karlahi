@@ -1,0 +1,30 @@
+<script
+  type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://js.openpay.mx/openpay.v1.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://js.openpay.mx/openpay-data.v1.min.js"
+></script>
+<script type="text/javascript">
+  OpenPay.setId("mhqfb8zmd20nx4zomyyr");
+  OpenPay.setApiKey("pk_03cae3a65a8a4ac99289d93f3a15ef59");
+  OpenPay.setSandboxMode(true);
+  var deviceSessionId = OpenPay.deviceData.setup("payForm", "deviceIdHiddenFieldName");
+    console.log("sessionId " + deviceSessionId);
+</script>
+
+<html>
+  <head>
+    <title>Openpay</title>
+  </head>
+  <body>
+    <form id="payForm">
+      <input type="hidden" id="deviceIdHiddenFieldName" />
+    </form>
+  </body>
+</html>

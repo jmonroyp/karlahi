@@ -2,20 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ILogin, ISession } from "../../domains/dtos/interfaces";
 import { RootState, AppThunk } from "../../app/store";
 import di from "../../di";
+import { SessionState } from "../../app/states";
 
-export interface ISessionState {
-  token: string;
-  user: string;
-  status: "authenticated" | "notauthenticated" | "loading" | "error";
-  errorMessage: string;
-}
 
-export class SessionState implements ISessionState {
-  token: string = "";
-  user: string = "";
-  status: "authenticated" | "notauthenticated" | "loading" | "error" = "notauthenticated";
-  errorMessage: string = "";
-}
 
 const initialState: SessionState = {
   token: "",
@@ -55,9 +44,7 @@ export const sessionSlice = createSlice({
   initialState,
   reducers: {
     getSession: (state) => {
-      state.token = "kaka";
-      state.user = "pipi";
-      state.status = "authenticated";
+      return state;
     }
   },
   extraReducers: {
@@ -80,7 +67,7 @@ export const sessionSlice = createSlice({
       state.token = "";
       state.user = "";
     },
-    [logoutAsync.rejected.type]: (state) => {
+    [logoutAsync.pending.type]: (state) => {
       state.status = "loading";
     },
     [logoutAsync.rejected.type]: (state) => {
@@ -89,7 +76,7 @@ export const sessionSlice = createSlice({
   },
 });
 
-export const { getSession } = sessionSlice.actions;
+// export const { getSession } = sessionSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

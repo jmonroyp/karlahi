@@ -11,16 +11,9 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const currentSession = useAppSelector(session);
-
-  
-  // useEffect(() => {
-  //   dispatch(GetPosts());
-  // }, []);
-
   const handleLogin = async (id: string, pw: string) => {
     dispatch(loginAsync(new LoginDto(id, pw)));
   };
-
   
 
   const renderedAlert = currentSession.status !== "error" ? (
@@ -38,6 +31,7 @@ const Login: React.FC = () => {
       <h3>Bienvenido</h3>
       <AuthForm accredit={handleLogin} btnValue={"Entrar"} />
       <div className="ui divider"></div>
+      <button onClick={() => dispatch(logoutAsync())}>logout</button>
       {renderedAlert}
       {loading}
       <p>
